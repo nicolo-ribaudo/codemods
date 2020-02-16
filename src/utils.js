@@ -16,9 +16,8 @@ async function codemod(relativeFilename, precheck, plugin) {
   let output = await babelRecast(
     input,
     { filename, cwd: path.dirname(filename), rootMode: "upward-optional" },
-    { plugins: [plugin] }
+    { plugins: [plugin], configFile: false }
   );
-
   const nl = input.match(TRALING_NL_RE);
   if (nl) output += nl[0];
 
