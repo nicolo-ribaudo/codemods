@@ -1,6 +1,6 @@
 {
   "name": "@nicolo-ribaudo/codemods",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "bin": "src/bin.js",
   "license": "MIT",
   "dependencies": {
