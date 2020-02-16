@@ -7,7 +7,16 @@ function tsTypeFields() {
   return {
     visitor: {
       ClassProperty(path) {
-        if (path.node.typeAnnotation && !path.node.value) {
+        const { node } = path;
+        const classNode = path.parentPath.parent;
+
+        if (node.value) return;
+
+        if (
+          opts.all ||
+          (opts.derived && classNode.superClass) ||
+          (opts.readonly && node.readonly)
+        ) {
           path.node.declare = true;
         }
       }

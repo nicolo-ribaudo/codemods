@@ -3,7 +3,10 @@
 const fs = require("fs");
 const { codemod } = require("./utils");
 
-const [/* node */, /* script */, codemodName, ...files] = process.argv;
+const [/* node */, /* script */, codemodName, ...optsOrFiles] = process.argv;
+
+const opts = {};
+const files = [];
 
 if (
   codemodName === "--help" ||
@@ -13,6 +16,14 @@ if (
   console.log(fs.readFileSync(__dirname + "/../README.txt", "utf8"));
   return;
 }
+
+optsOrFiles.forEach(name => {
+  if (name.startsWith("--")) {
+    opts[name.slice(2)] = true;
+  } else {
+    files.push(name);
+  }
+});
 
 let plugin, precheck;
 try {
@@ -31,7 +42,7 @@ if (files.length === 0) {
 
 Promise.allSettled(
   files.map(filename =>
-    codemod(filename, precheck, plugin).then(
+    codemod(filename, precheck, [plugin, opts]).then(
       () => process.stdout.write("."),
       e => console.log("x", filename, e)
     )

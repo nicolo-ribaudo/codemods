@@ -5,7 +5,7 @@ exports.precheck = src => precheckRE.test(src);
 
 const precheckRE = /\bclass\b/;
 
-function flowTypeFields() {
+function flowTypeFields(babel, opts) {
   function addComments(node, comments) {
     if (!node.comments) node.comments = [];
 
@@ -72,7 +72,16 @@ function flowTypeFields() {
   return {
     visitor: {
       ClassProperty(path) {
-        if (path.node.typeAnnotation && !path.node.value) {
+        const { node } = path;
+        const classNode = path.parentPath.parent;
+
+        if (node.value) return;
+
+        if (
+          opts.all ||
+          (opts.derived && classNode.superClass) ||
+          (opts.covariant && node.variance && node.variance.kind === "plus")
+        ) {
           attachComment(path);
         }
       }
