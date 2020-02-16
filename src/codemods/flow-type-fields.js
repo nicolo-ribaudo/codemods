@@ -6,14 +6,17 @@ exports.precheck = src => precheckRE.test(src);
 const precheckRE = /\bclass\b/;
 
 function flowTypeFields() {
-  function commentFromString(comment) {
-    return typeof comment === "string"
-      ? { type: "CommentBlock", value: comment }
-      : comment;
+  function addComments(node, comments) {
+    if (!node.comments) node.comments = [];
+
+    for (const comment of comments) {
+      if (!node.comments.includes(comment)) node.comments.push(comment);
+    }
+
+    node.comments.sort((a, b) => a.start > b.start ? 1 : -1);
   }
 
   function attachComment(ofPath) {
-    let comments = generateComment(ofPath);
     let toPath = ofPath.getNextSibling();
     let where = "leading";
 
@@ -25,39 +28,45 @@ function flowTypeFields() {
       toPath = ofPath.parentPath;
       where = "inner";
     }
-    if (!Array.isArray(comments)) {
-      comments = [comments];
-    }
-    comments = comments.map(commentFromString);
-    if (ofPath && ofPath.node) {
-      // Removes the node at `ofPath` while conserving the comments attached
-      // to it.
-      const node = ofPath.node;
-      const parent = ofPath.parentPath;
-      const prev = ofPath.getPrevSibling();
-      const next = ofPath.getNextSibling();
-      const isSingleChild = !(prev.node || next.node);
-      const leading = node.leadingComments;
-      const trailing = node.trailingComments;
 
-      if (isSingleChild && leading) {
-        parent.addComments("inner", leading);
-      }
-      toPath.addComments(where, comments);
-      ofPath.remove();
-      if (isSingleChild && trailing) {
-        parent.addComments("inner", trailing);
-      }
-    } else {
-      toPath.addComments(where, comments);
-    }
+    const leading = where === "leading";
+    const trailing = where === "trailing";
+
+    const comment = {
+      type: "CommentBlock",
+      value: generateComment(ofPath),
+      start: ofPath.node.start,
+      end: ofPath.node.end,
+      loc: ofPath.node.loc,
+      leading,
+      trailing,
+    };
+
+    const comments = ofPath.node.comments;
+    comments.forEach(comment => {
+      comment.leading = leading;
+      comment.trailing = trailing;
+    });
+    comments.push(comment);
+
+    addComments(toPath.node, comments);
+    ofPath.remove();
   }
 
   function generateComment(path) {
-    const comment = (path.getSource() || path.toString())
+    let comment = (path.getSource() || path.toString())
       .replace(/\*-\//g, "*--/")
       .replace(/\*\//g, "*-/");
-    return ":: " + comment;
+    
+    if (comment.includes("\n")) {
+      const indent = path.node.loc.start.column;
+      if (indent) comment = comment.replace(new RegExp(`^\\s{0,${indent}}`, "gm"), "");
+      comment = "\n" + comment + "\n";
+    } else {
+      comment = " " + comment + " ";
+    }
+
+    return "::" + comment;
   }
 
   return {
