@@ -147,6 +147,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nicolo-ribaudo/codemods@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "@nicolo-ribaudo/codemods@workspace:."
+  dependencies:
+    "@babel/core": ^7.8.4
+    recast: ^0.18.5
+  languageName: unknown
+  linkType: soft
+
 "ansi-styles@npm:^3.2.1":
   version: 3.2.1
   resolution: "ansi-styles@npm:3.2.1"
@@ -160,23 +169,6 @@ __metadata:
   version: 0.13.2
   resolution: "ast-types@npm:0.13.2"
   checksum: e336c3bb91d7184c885721eb429d89ce730f4d9e665785410dafd9371caba79f91579d5e6df5781c58fe3e6501774fd6f690a5f2e65df192c5bd978983a73b2f
-  languageName: node
-  linkType: hard
-
-"balanced-match@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "balanced-match@npm:1.0.0"
-  checksum: 6a1a4021cc9cb35182852582ed42470041430842bbc9d3dfad9536fca203281e4bc6316a017a0b876df0acb8d0d83daa22d5c6483108869c0895582525af9f60
-  languageName: node
-  linkType: hard
-
-"brace-expansion@npm:^1.1.7":
-  version: 1.1.11
-  resolution: "brace-expansion@npm:1.1.11"
-  dependencies:
-    balanced-match: ^1.0.0
-    concat-map: 0.0.1
-  checksum: 6bf044764309bad6d15c6eabc39e93701643b00192439251afe8b4e0c08f941b840f3c8844b163fc307111459121712fb74e40073ddffb0358f8a640f14ba7b1
   languageName: node
   linkType: hard
 
@@ -204,13 +196,6 @@ __metadata:
   version: 1.1.3
   resolution: "color-name@npm:1.1.3"
   checksum: ad6a0e4beb3232906aeba6213234071ca26f463ac748feb897725cbd0f420a0e71962f9627566afc4716e63455f88a35641342302b8d130402cbbea8f6bf8e1e
-  languageName: node
-  linkType: hard
-
-"concat-map@npm:0.0.1":
-  version: 0.0.1
-  resolution: "concat-map@npm:0.0.1"
-  checksum: b295d07d6ac4f0e3fe511fce7ac74c5f6583e67bace249c32c6b2baa44b2c6220c7c177c9e44954485f37b7e7ec6a6a231447b62137d0fb56b44a7e871ac33e3
   languageName: node
   linkType: hard
 
@@ -256,31 +241,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fs.realpath@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "fs.realpath@npm:1.0.0"
-  checksum: 7838256cafb93ee7a40754e7fdcae9c6e57b12528e22ae51a10bc6161ad6a647931dd99aa95ddf3a4ce8501766f78e57a56ed010043dddf8dddb4ad5af616acb
-  languageName: node
-  linkType: hard
-
 "gensync@npm:^1.0.0-beta.1":
   version: 1.0.0-beta.1
   resolution: "gensync@npm:1.0.0-beta.1"
   checksum: 457229d03368aee69a9d4e96e479a62ae619a18b74e25708c94acb82178bb09791f50a5fc00014cb46a8447ad72e6c8b43ccab7447a637a7b4ade83637948310
-  languageName: node
-  linkType: hard
-
-"glob@npm:^7.1.6":
-  version: 7.1.6
-  resolution: "glob@npm:7.1.6"
-  dependencies:
-    fs.realpath: ^1.0.0
-    inflight: ^1.0.4
-    inherits: 2
-    minimatch: ^3.0.4
-    once: ^1.3.0
-    path-is-absolute: ^1.0.0
-  checksum: 1e4476a9b7a81eec0bcfee78de4c27a40d2bde349eb04a63c58636acf8dc5ad8c68bc47c841bf7de5fde22696b1d2a737ada65e66c2359a0b3195fafc1316814
   languageName: node
   linkType: hard
 
@@ -295,23 +259,6 @@ __metadata:
   version: 3.0.0
   resolution: "has-flag@npm:3.0.0"
   checksum: c69624d2a38d77d4d715b40932cd55635426d75c7c0e72a609a67b4d251905517ca6d1ff6f69ee3b0cfa95a39b31e25af9e3fe04f46b092699ea5f26371d14ab
-  languageName: node
-  linkType: hard
-
-"inflight@npm:^1.0.4":
-  version: 1.0.6
-  resolution: "inflight@npm:1.0.6"
-  dependencies:
-    once: ^1.3.0
-    wrappy: 1
-  checksum: 4ae4f2a43120647487d1650aaecd81044692397040d46d38257c349f142889be56ffb23f599c09dadc4287baeb4f3381e304e7eef111d7c7fec00def06111c4c
-  languageName: node
-  linkType: hard
-
-"inherits@npm:2":
-  version: 2.0.4
-  resolution: "inherits@npm:2.0.4"
-  checksum: d11734fde3095ce63e83a4be33779c8597b0c95edec3efcadf9a78a9312a520028e25acb2d126656005791550f9f2e17de3ea6abeb026fa24627401e5e174d6c
   languageName: node
   linkType: hard
 
@@ -349,15 +296,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"minimatch@npm:^3.0.4":
-  version: 3.0.4
-  resolution: "minimatch@npm:3.0.4"
-  dependencies:
-    brace-expansion: ^1.1.7
-  checksum: c32249a40b1dbbb8d836495877d91874fcf6ce9c287409c41bcb3efe5ad67e21512a459a4ae3ce9b32e1df376c1cde14cbe9fe3ba17f703c2b253993577f4ccf
-  languageName: node
-  linkType: hard
-
 "minimist@npm:^1.2.0":
   version: 1.2.0
   resolution: "minimist@npm:1.2.0"
@@ -369,22 +307,6 @@ __metadata:
   version: 2.1.2
   resolution: "ms@npm:2.1.2"
   checksum: 2a3d955e5199024d4b18630ff47c21b52703a5e892615ae233486b8108f26b5493736009754263eebae765ab79d6e20327dad6e52d7843b689d404245e286549
-  languageName: node
-  linkType: hard
-
-"once@npm:^1.3.0":
-  version: 1.4.0
-  resolution: "once@npm:1.4.0"
-  dependencies:
-    wrappy: 1
-  checksum: 47a04404e9aa3a209a7e536b199780fe75aba04df0a035b221285f2f703d0ab58286ffb402ff7cb5a3b894d0e86685eb4fc2766ce7a19555c14221437f248c03
-  languageName: node
-  linkType: hard
-
-"path-is-absolute@npm:^1.0.0":
-  version: 1.0.1
-  resolution: "path-is-absolute@npm:1.0.1"
-  checksum: 0e197d7cfa28209bce077b65646e21beb9a9980cc2b57efa4a4bf3b3331ec003f823bfec0948326264a2cbc57645a666cf911eb5d949d627d9e788280cccaa07
   languageName: node
   linkType: hard
 
@@ -475,22 +397,5 @@ resolve@^1.3.2:
   version: 2.0.0
   resolution: "to-fast-properties@npm:2.0.0"
   checksum: 0ff0bd3e27356443836aa12dba66fea6469563ca42fccb7f74b54d2e41743b2a3c36ae92a0a98178d039dafe1ac6faca87e7ed398514c3511142b7c450d7e9e7
-  languageName: node
-  linkType: hard
-
-"utils-codemods@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "utils-codemods@workspace:."
-  dependencies:
-    "@babel/core": ^7.8.4
-    glob: ^7.1.6
-    recast: ^0.18.5
-  languageName: unknown
-  linkType: soft
-
-"wrappy@npm:1":
-  version: 1.0.2
-  resolution: "wrappy@npm:1.0.2"
-  checksum: 0796da084f06bced2351fed9686a7211f4a4b774a7a3b64c7ead1b3bef162b1721f2a1d3fb1268bf2e848c9d743eca189c2a243159a1512d5dfab4b0d4dd60b5
   languageName: node
   linkType: hard
