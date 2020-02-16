@@ -11,6 +11,7 @@
     "src/**/*",
     "README.txt"
   ],
+  "licenses": ["MIT"],
   "engines": {
     "node": ">=10.0.0"
   },
