@@ -16,16 +16,6 @@ SUPPORTED CODEMODS:
                     method "require.resolve".
                     It supports the "basedir" parameter.
 
-  ts-type-fields    Adds the "declare" keyword before type-only class fields
-                    declarations in TypeScript. Starting from Babel 8.0.0,
-                    fields without the "declare" keyword will be initialized to
-                    "undefined" by default.
-                    This codemod accepts the following options, to filer the
-                    uninitialized fields to transform:
-                     --all      All the uninitialized fields
-                     --derived  In derived classes 
-                     --readonly Readonly fields
-
   flow-type-fields  Wraps type-only class fields in flow comments (/*: ... */).
                     Starting from Babel 8.0.0, unwrapped fields will be
                     initialized to "undefined" by default.
