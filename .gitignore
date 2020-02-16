@@ -1,2 +1,5 @@
 .yarn/cache
 .pnp.js
+
+node_modules
+package-lock.json
